@@ -1,30 +1,29 @@
 
 var turno = 1;
 var boton;
-var array = [0,0,0,0,0,0,0,0,0];
+var array = [1,2,3,4,5,6,7,8,9];
 var ganador = document.getElementById("ganador");
+//var jugador = document.getElementById("jugador");
+var letra = "X";
+//jugador.innerHTML = letra;
 
+//Funcion que marca el boton deacuerdo con el jugador en turno
 function marcarBoton(valor){
-  this.boton = document.getElementById(valor);
+  boton = document.getElementById(valor);
 
-  if(this.turno %2 == 0){
+  if(turno %2 == 0){
     letra = "O";
-
   }else{
     letra = "X";
-
   }
-  //console.log(this.turno);
-
+  //Ingresa el valor array
   array[valor] = letra;
-  //console.log(array);
-  this.boton.innerHTML = letra;
-  this.turno++;
+//escribe el boton y lo desactiva
+  boton.innerHTML = letra;
+  turno++;
   desactivar(valor);
-
-  if(this.turno>=6){
+  if(turno>=6){
     evaluarJuego();
-
   }
 
 }
@@ -64,19 +63,26 @@ function evaluarJuego(){
 
   if(valor != ""){
     ganador.innerHTML = respuesta + valor;
-    console.log(array);
     desactivarTodos();
+  }else{
+    if(turno==10){ ganador.innerHTML = "Empate";}
   }
 
 }
 
 function desactivarTodos(){
-
   for(i=0; i<9; i++){
     document.getElementById(i).disabled = true;
-
   }
 }
+
 function limpiar(){
-  this.turno = 1;
+  turno = 1;
+  for(i=0; i<9; i++){
+    array = [1,2,3,4,5,6,7,8,9];
+    document.getElementById(i).innerHTML = "";
+    document.getElementById(i).disabled = false;
+    ganador.innerHTML = "";
+
+  }
 }
