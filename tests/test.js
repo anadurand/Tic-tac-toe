@@ -12,11 +12,9 @@ describe('Tic tac toe', function() {
 
   it('Debo poder crear un nuevo juego con los valores por defecto', function() {
 
-    tictactoe.newGame();
-
-    assert.deepEqual([["+","+","+"],["+","+","+"],["+","+","+"]],tictactoe.board);
-
-    assert.equal(0,tictactoe.turn); // El turno lo represento con una variable que hace 0 o 1
+    tictactoe.limpiar();
+    assert.deepEqual(tictactoe.limpiar(),[1,2,3,4,5,6,7,8,9]);
+    assert.equal(tictactoe.turno,0); // El turno lo represento con una variable que hace 0 o 1
 
   });
 
@@ -26,33 +24,25 @@ describe('Tic tac toe', function() {
 
     tictactoe.jugar(1);
 
-    assert.deepEqual([["x","+","+"],["+","+","+"],["+","+","+"]],tictactoe.board);
+    assert.deepEqual(tictactoe.marcarBoton(),["x",2,3,4,5,6,7,8,9]);
 
     tictactoe.jugar(2);
 
-    assert.deepEqual([["+","o","+"],["+","+","+"],["+","+","+"]],tictactoe.board);
+    assert.deepEqual(tictactoe.marcarBoton(),[1,"o",3,4,5,6,7,8,9]);
 
   });
-
-  it('Solo debe ser posible jugar dentro del tablero(1-9)',function() {
-
-
-
-  });
-
-
 
   it('Debo poder validar que alguien gano el juego',function() {
 
-
+    assert.deepEqual(tictactoe.evaluarJuego(),["x","x","x","o",5,6,7,"o",9]);
+    assert.deepEqual(tictactoe.evaluarJuego(),["o","o","o",4,"x",6,"x","x",9]);
+    assert.deepEqual(tictactoe.evaluarJuego(),["x","o",3,"x",5,"o","x",8,9]);
 
   });
 
-
-
   it('Debo poder validar si hay empate', function() {
 
-
+    assert.deepEqual(tictactoe.evaluarJuego(),["x","o","x","o","x","o","o","x","o"]);
 
   });
 
