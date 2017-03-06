@@ -3,25 +3,30 @@ var turno = 1;
 var boton;
 var array = [1,2,3,4,5,6,7,8,9];
 var ganador = document.getElementById("ganador");
-//var jugador = document.getElementById("jugador");
+var jugador = document.getElementById("jugador");
 var letra = "X";
-//jugador.innerHTML = letra;
 
+jugador.innerHTML = letra;
 //Funcion que marca el boton deacuerdo con el jugador en turno
 function marcarBoton(valor){
   boton = document.getElementById(valor);
-
+  var jug;
   if(turno %2 == 0){
     letra = "O";
+    jug = "X";
   }else{
     letra = "X";
+    jug = "O";
   }
   //Ingresa el valor array
   array[valor] = letra;
 //escribe el boton y lo desactiva
+  jugador.innerHTML = jug;
   boton.innerHTML = letra;
+
   turno++;
   desactivar(valor);
+
   if(turno>=6){
     evaluarJuego();
   }
