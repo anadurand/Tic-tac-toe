@@ -88,7 +88,8 @@ function limpiar(){
     document.getElementById(i).innerHTML = "+";
     document.getElementById(i).disabled = false;
     ganador.innerHTML = "";
+    jugador.innerHTML = "X";
 
   }
-  
+
 }
